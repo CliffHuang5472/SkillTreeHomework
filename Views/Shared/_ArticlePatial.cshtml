@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MVCHomework6.Data.Database.Articles>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="card mt-5">
+            <img src="@item.CoverPhoto" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">
+                    @item.Body
+                </p>
+                <a href="#" class="card-link">SkillTree</a>
+                <a href="#" class="card-link">MVC</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on @item.CreateDate by me
+            </div>
+        </div>
+    }
+}

@@ -1,33 +1,17 @@
-﻿@*@using X.PagedList
+﻿@using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 @model IPagedList<MVCHomework6.Data.Database.Articles>
-*@
-@model IEnumerable<MVCHomework6.Data.Database.Articles>
 
 @{
-    ViewData["Title"] = "Home Page";
-}
-
-@*ViewComponents*@
-@*<vc:article></vc:article>*@ @* 莫名時好時壞*@
-<div id="ArticleContent">
-    @await Component.InvokeAsync("Article",new {page=ViewBag.CurrentPage,content= ViewBag.CurrentFilter})
-</div>
-
-@*PatialView*@
-@*@await Html.PartialAsync("_ArticlePatial")*@
-
-@*Razor View(foreach)*@
-@*@{
- foreach (var item in Model)
+    foreach (var item in Model)
     {
         <div class="card mt-5">
             <img src="@item.CoverPhoto" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">@item.Title</h5>
                 <p class="card-text">
-                    @item.Body
+                    @Html.Raw(item.Body)
                 </p>
                 <a href="#" class="card-link">SkillTree</a>
                 <a href="#" class="card-link">MVC</a>
@@ -37,18 +21,17 @@
             </div>
         </div>
     }
-}*@
+}
 
-
-@*<nav class="mt-4">
+<nav class="mt-4">
     <ul class="pagination justify-content-center">
         @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page  }),new PagedListRenderOptions {
-                PageClasses = new[] { "page-link","ListPage" },
-                UlElementClasses = new[] { "pagination" },
-                LiElementClasses = new[] { "page-item" }
-            }
+        PageClasses = new[] { "page-link","ListPage" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" }
+        }
         )
     </ul>
 </nav>
-*@
+

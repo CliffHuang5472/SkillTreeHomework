@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVCHomework6.Data;
 using MVCHomework6.Data.Database;
+using MVCHomework6.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 //本範例使用 EntityFramework inMemory 沒有實體資料庫全部在記憶體內（對於測試和POC是非常好用的）
@@ -8,6 +9,8 @@ builder.Services.AddDbContext<BlogDbContext>(options => options.UseInMemoryDatab
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IDataService, DataService>();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
